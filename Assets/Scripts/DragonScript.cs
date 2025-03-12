@@ -3,11 +3,11 @@ using UnityEngine;
 public class DragonScript : MonoBehaviour
 {
     Vector3 originalSize;
-
-
+    public Animator animator;
     void Start()
     {
         originalSize = transform.localScale;
+        animator = GetComponent<Animator>();
     }
 
     void Update()
@@ -17,12 +17,26 @@ public class DragonScript : MonoBehaviour
 
     public void inspiration()
     {
-
-       transform.localScale = Vector3.Lerp(transform.localScale, new Vector3(1f, 1f, 1f), (Time.deltaTime * 0.5f));
+        animator.SetTrigger("Inspiration");
+        animator.ResetTrigger("CloseEyes");
     }
-
-     public void expiration()
+    public void expiration()
     {
-        transform.localScale = Vector3.Lerp(transform.localScale, originalSize, (Time.deltaTime * 0.5f));
+        animator.SetTrigger("Expiration");
+        animator.ResetTrigger("OpenEyes");
     }
+
+    public void closeEyes()
+    {
+        animator.SetTrigger("CloseEyes");
+        animator.ResetTrigger("Expiration");
+    }
+
+    public void openEyes()
+    {
+        animator.SetTrigger("OpenEyes");
+        animator.ResetTrigger("Inspiration");
+    }
+
+
 }

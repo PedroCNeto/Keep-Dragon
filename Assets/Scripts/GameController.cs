@@ -33,15 +33,13 @@ public class GameController : MonoBehaviour
         }*/
 
         //Respiração automática
-        print(breathStage);
         if (breathStage == 1)
         {
-            Dragon.inspiration();
             fillBreathBar.fillBreathingBar();
         }
         else
         {
-            Dragon.expiration();
+
             fillBreathBar.emptyBreathingBar();
         }
 
@@ -59,13 +57,17 @@ public class GameController : MonoBehaviour
         while (true)
         {
 
+            Dragon.closeEyes();
             breathStage = 1;
-
-            yield return new WaitForSeconds(2.5f);
-
+            yield return new WaitForSeconds(0.5f);
+            Dragon.inspiration();
+            yield return new WaitForSeconds(2f);
+            Dragon.openEyes();
             breathStage = 2;
+            yield return new WaitForSeconds(0.5f);
+            Dragon.expiration();
+            yield return new WaitForSeconds(2f);
 
-            yield return new WaitForSeconds(2.5f);
 
             breathQuantity += 1;
         }
