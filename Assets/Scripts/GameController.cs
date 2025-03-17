@@ -5,8 +5,9 @@ public class GameController : MonoBehaviour
 {
     public DragonScript Dragon;
     public BreathingBar fillBreathBar;
-    public RockScript Rock;
+    public RewardController RewardComponent;
     public GameObject Fire;
+
 
     //1 = Inspirando | 2 = Expirando
     int breathStage = 1;
@@ -43,10 +44,10 @@ public class GameController : MonoBehaviour
             fillBreathBar.emptyBreathingBar();
         }
 
-        if(breathQuantity == 2)
+        if(breathQuantity == 1)
         {
             StartCoroutine(FireEffect());
-            Rock.progressColor();
+            RewardComponent.progressColor();
             breathQuantity = 0;
         }
     }
